@@ -1,4 +1,4 @@
-# PageHelper
+# PageHelper for iterating page
 Helps iterating pages of records with a simple code construct.
 
 Usage areas;
