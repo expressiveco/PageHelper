@@ -5,6 +5,8 @@ public class PageHelper
   public readonly int PageCount;
   private int _lastItemOfPage;
 
+  /// <param name="itemCount">Total number of items</param>
+  /// <param name="pageSize">Number of items in a page</param>
   public PageHelper(int itemCount, int pageSize)
   {
       if (itemCount == 0 || pageSize == 0)
