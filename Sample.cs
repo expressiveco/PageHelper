@@ -9,7 +9,7 @@ public class Startup
             Debug.WriteLine("Page: " + pageHelper.CurrentPage);
             while (pageHelper.NextItem())
             {
-                Debug.WriteLine("Record: " + pageHelper.CurrentRecord);
+                Debug.WriteLine("Item: " + pageHelper.CurrentItem);
             }
         }
     }
