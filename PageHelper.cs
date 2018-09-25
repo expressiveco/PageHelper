@@ -1,10 +1,9 @@
-    public class PageHelper
+   public class PageHelper
     {
         private readonly int _totalRecordCount;
         private readonly int _pageSize;
-
         public readonly int PageCount;
-        private int _currentPageRecordCount;
+        private int _lastRecordOfPage;
 
         public PageHelper(int recordCount, int pageSize)
         {
@@ -18,25 +17,24 @@
             PageCount = (int)Math.Ceiling((double)recordCount / pageSize);
         }
 
-        public int CurrentRecord => CurrentPage < PageCount ? (1 * CurrentPage) * _pageSize - _currentPageRecordCount : _totalRecordCount - _currentPageRecordCount;
-
+        public int CurrentRecord { get; private set; }
         public int CurrentPage { get; private set; }
 
         public bool NextPage()
         {
-            if (CurrentPage >= PageCount)
+            if (CurrentRecord >= _totalRecordCount)
                 return false;
 
             CurrentPage++;
-            _currentPageRecordCount = CurrentPage < PageCount ? _pageSize : _totalRecordCount - (CurrentPage - 1) * _pageSize;
+            _lastRecordOfPage = CurrentPage < PageCount ? _lastRecordOfPage + _pageSize : _totalRecordCount;
             return true;
         }
         public bool NextItem()
         {
-            if (_currentPageRecordCount <= 0)
+            if (CurrentRecord >= _lastRecordOfPage)
                 return false;
 
-            _currentPageRecordCount--;
+            CurrentRecord++;
             return true;
         }
     }
