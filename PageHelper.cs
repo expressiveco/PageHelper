@@ -24,7 +24,7 @@
 
         public bool NextPage()
         {
-            if (PageCount <= CurrentPage)
+            if (CurrentPage >= PageCount)
                 return false;
 
             CurrentPage++;
